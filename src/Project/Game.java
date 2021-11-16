@@ -4,16 +4,20 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Menu {
+public class Game {
     
     // Scanner
     Scanner scanner = new Scanner(System.in);
     
     // ArraysLists
-    ArrayList<Player> playerList = new ArrayList<Player>();  
+    // Custom class som bara ka ta emot players
+    ArrayList<Player> playerList = new ArrayList<Player>();
     ArrayList<String> players = new ArrayList<String>();
     ArrayList<Integer> scores = new ArrayList<Integer>();
+    ArrayList<String> winningPlayer = new ArrayList<String>();
+    ArrayList<Integer> maxScore = new ArrayList<Integer>();
     
+    // Instansiera ett Dice objekt
     Dice dice = new Dice(6);
 
     // Menu
@@ -36,7 +40,6 @@ public class Menu {
                 case 0 -> end();
                 default -> System.out.println("Invalid input");
             }
-            
         } while (ch != 0);
         scanner.close();
     }
@@ -47,20 +50,33 @@ public class Menu {
         if (playerList.isEmpty()) {
             System.out.println("Please Add Player");
         } else {
-            String winningPlayer = "";
-            int maxScore = 0;
             for (int i = 0; i < playerList.size(); i++) {
                 Player tempPlayer = playerList.get(i);
                 players.add(tempPlayer.getName());
                 scores.add(tempPlayer.getScore());
-                if (maxScore <= tempPlayer.getScore()) {
-                    maxScore = tempPlayer.getScore();
-                    winningPlayer = tempPlayer.getName();
+                // Kommer alltid att köras minst en gång
+                if (maxScore.isEmpty()) {
+                    winningPlayer.add(tempPlayer.getName());
+                    maxScore.add(tempPlayer.getScore());
                 }
+                // Kolla om maxpoängen är mindre än nästa spelarens poäng
+                else if (maxScore.get(0) < tempPlayer.getScore()) {
+                    winningPlayer.clear();
+                    maxScore.clear();
+                    winningPlayer.add(tempPlayer.getName());
+                    maxScore.add(tempPlayer.getScore());
+                }
+                // Kolla om nästa spelarens poäng har samma som tidigare maxpoäng
+                else if (maxScore.contains(tempPlayer.getScore())) {
+                    winningPlayer.add(tempPlayer.getName());
+                    maxScore.add(tempPlayer.getScore());
+                } 
             }
             System.out.println(players);
             System.out.println(scores);
-            System.out.println("The winner is: " + winningPlayer + " with score of: " + maxScore);
+            for (int i = 0; i < winningPlayer.size(); i++) {
+                System.out.println("The winner is: " + winningPlayer.get(i) + " with a score of: " + maxScore.get(i));
+            }
         }
     }
 
@@ -84,8 +100,8 @@ public class Menu {
         if (playerList.isEmpty()) {
             System.out.println("Players are missing");
         } else {
-            for (int i = 0; i < players.size(); i++) {
-                String names = MessageFormat.format("Player {0} is: " + players.get(i), i + 1);
+            for (int i = 0; i < playerList.size(); i++) {
+                String names = MessageFormat.format("Player {0} is: " + playerList.get(i).getName(), i + 1);
                 System.out.println(names);
             }
         }

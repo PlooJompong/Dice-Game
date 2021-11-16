@@ -1,5 +1,5 @@
 package Project;
 
-public interface myInterface {
+public interface DiceInterface {
     public int throwDice();
 }

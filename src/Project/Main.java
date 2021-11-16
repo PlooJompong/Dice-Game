@@ -5,8 +5,8 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Application is running...");
 
-        Menu menu = new Menu();
-        menu.menu();
+        Game game = new Game();
+        game.menu();
     }
 }
 
@@ -16,5 +16,5 @@ public class Main {
  * // one Interface or Abstract Class;
  * // Win/Lose condition;
  * UML;
- * Documentation
+ * //Documentation
  */

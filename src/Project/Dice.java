@@ -2,7 +2,7 @@ package Project;
 
 import java.util.Random;
 
-public class Dice implements myInterface {
+public class Dice implements DiceInterface {
     
     int sizeAmount;
 
