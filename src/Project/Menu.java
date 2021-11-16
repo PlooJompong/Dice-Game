@@ -49,21 +49,21 @@ public class Menu {
         if (players.isEmpty()) {
             System.out.println("Please Add Player");
         } else {
-            Integer max = Collections.max(scores);
+            Integer high = Collections.max(scores);
             System.out.println(players);
             System.out.println(scores);
             
             for (int i = 0; i < scores.size(); i++) {
-                if (scores.get(i) == max) {
+                if (scores.get(i) == high) {
                     winners.add(i);
                 }
             }
 
             for (int i = 0; i < winners.size(); i++) {
                 if (winners.size() > 1) {
-                    System.out.println(winners.get(i) + " are equal with the score of: " + max);
+                    System.out.println(winners.get(i) + " are equal with the score of: " + high);
                 } else {
-                    System.out.println(winners.get(i) + " won with the score of " + max);
+                    System.out.println(winners.get(i) + " won with the score of " + high);
                 }
             }
         }
