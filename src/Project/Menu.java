@@ -45,7 +45,6 @@ public class Menu {
     
     // Start the game
     private void start() {
-        
         System.out.println("\n ===== LET'S PLAY ===== \n");
         if (players.isEmpty()) {
             System.out.println("Please Add Player");
@@ -62,8 +61,7 @@ public class Menu {
 
             for (int i = 0; i < winners.size(); i++) {
                 if (winners.size() > 1) {
-                    System.out.println(winners.hashCode() + " are equal with the score of: " + max);
-
+                    System.out.println(winners.get(i) + " are equal with the score of: " + max);
                 } else {
                     System.out.println(winners.get(i) + " won with the score of " + max);
                 }
@@ -107,7 +105,7 @@ public class Menu {
         if (players.isEmpty()) {
             System.out.println("The list is empty");
         } else {
-            System.out.println("Player's name har been deleted");
+            System.out.println("Player's name has been deleted");
             players.clear();
             scores.clear();
             winners.clear();
