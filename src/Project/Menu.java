@@ -51,16 +51,13 @@ public class Menu {
             int maxScore = 0;
             for (int i = 0; i < playerList.size(); i++) {
                 Player tempPlayer = playerList.get(i);
-
                 players.add(tempPlayer.getName());
                 scores.add(tempPlayer.getScore());
-
                 if (maxScore <= tempPlayer.getScore()) {
                     maxScore = tempPlayer.getScore();
                     winningPlayer = tempPlayer.getName();
                 }
             }
-
             System.out.println(players);
             System.out.println(scores);
             System.out.println("The winner is: " + winningPlayer + " with score of: " + maxScore);
@@ -72,7 +69,6 @@ public class Menu {
         System.out.println("\n ===== ADD PLAYER ===== \n");
         System.out.println("How many players?\n");
         int playerAmount = scanner.nextInt();
-
         for (int i = 0; i < playerAmount; i++) {
             String player = MessageFormat.format("Enter player {0} name", i + 1);
             System.out.println(player);
@@ -85,12 +81,11 @@ public class Menu {
     // Check players amount & name
     private void checkPlayer() {
         System.out.println("\n ===== PLAYER'S NAME ===== \n");
-        
         if (playerList.isEmpty()) {
             System.out.println("Players are missing");
         } else {
-            for (int i = 0; i < playerList.size(); i++) {
-                String names = MessageFormat.format("Player {0} is: " + playerList.get(i), i + 1);
+            for (int i = 0; i < players.size(); i++) {
+                String names = MessageFormat.format("Player {0} is: " + players.get(i), i + 1);
                 System.out.println(names);
             }
         }
@@ -104,6 +99,8 @@ public class Menu {
         } else {
             System.out.println("Player's name has been deleted");
             playerList.clear();
+            players.clear();
+            scores.clear();
         }
     }
     

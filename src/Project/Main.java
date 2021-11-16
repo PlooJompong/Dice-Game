@@ -12,9 +12,9 @@ public class Main {
 
 /** TODO
  * // throwDice()
- * //two POJO;
- * //  one Interface or Abstract Class;
- * Win/Lose condition;
+ * // two POJO;
+ * // one Interface or Abstract Class;
+ * // Win/Lose condition;
  * UML;
  * Documentation
  */
