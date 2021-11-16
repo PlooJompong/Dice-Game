@@ -2,7 +2,6 @@ package Project;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Menu {
@@ -11,12 +10,11 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
     
     // ArraysLists
+    ArrayList<Player> playerList = new ArrayList<Player>();  
     ArrayList<String> players = new ArrayList<String>();
     ArrayList<Integer> scores = new ArrayList<Integer>();
-    ArrayList<Integer> winners = new ArrayList<Integer>();
     
-    FirstDice firstDice = new FirstDice();
-    SecondDice secondDice = new SecondDice();
+    Dice dice = new Dice(6);
 
     // Menu
     public void menu() {
@@ -46,26 +44,26 @@ public class Menu {
     // Start the game
     private void start() {
         System.out.println("\n ===== LET'S PLAY ===== \n");
-        if (players.isEmpty()) {
+        if (playerList.isEmpty()) {
             System.out.println("Please Add Player");
         } else {
-            Integer high = Collections.max(scores);
-            System.out.println(players);
-            System.out.println(scores);
-            
-            for (int i = 0; i < scores.size(); i++) {
-                if (scores.get(i) == high) {
-                    winners.add(i);
+            String winningPlayer = "";
+            int maxScore = 0;
+            for (int i = 0; i < playerList.size(); i++) {
+                Player tempPlayer = playerList.get(i);
+
+                players.add(tempPlayer.getName());
+                scores.add(tempPlayer.getScore());
+
+                if (maxScore <= tempPlayer.getScore()) {
+                    maxScore = tempPlayer.getScore();
+                    winningPlayer = tempPlayer.getName();
                 }
             }
 
-            for (int i = 0; i < winners.size(); i++) {
-                if (winners.size() > 1) {
-                    System.out.println(winners.get(i) + " are equal with the score of: " + high);
-                } else {
-                    System.out.println(winners.get(i) + " won with the score of " + high);
-                }
-            }
+            System.out.println(players);
+            System.out.println(scores);
+            System.out.println("The winner is: " + winningPlayer + " with score of: " + maxScore);
         }
     }
 
@@ -79,9 +77,8 @@ public class Menu {
             String player = MessageFormat.format("Enter player {0} name", i + 1);
             System.out.println(player);
             String playerName = scanner.next();
-            players.add(playerName);
-            int totalScore = firstDice.throwDice() + secondDice.throwDice();
-            scores.add(totalScore);
+            int totalScore = dice.throwDice() + dice.throwDice();
+            playerList.add(new Player(playerName, totalScore));
         }
     }
 
@@ -89,11 +86,11 @@ public class Menu {
     private void checkPlayer() {
         System.out.println("\n ===== PLAYER'S NAME ===== \n");
         
-        if (players.isEmpty()) {
+        if (playerList.isEmpty()) {
             System.out.println("Players are missing");
         } else {
-            for (int i = 0; i < players.size(); i++) {
-                String names = MessageFormat.format("Player {0} is: " + players.get(i), i + 1);
+            for (int i = 0; i < playerList.size(); i++) {
+                String names = MessageFormat.format("Player {0} is: " + playerList.get(i), i + 1);
                 System.out.println(names);
             }
         }
@@ -102,13 +99,11 @@ public class Menu {
     // Remove all players && scores
     private void clearPlayer() {
         System.out.println("\n ===== CLEAR PLAYER ===== \n");
-        if (players.isEmpty()) {
+        if (playerList.isEmpty()) {
             System.out.println("The list is empty");
         } else {
             System.out.println("Player's name has been deleted");
-            players.clear();
-            scores.clear();
-            winners.clear();
+            playerList.clear();
         }
     }
     
