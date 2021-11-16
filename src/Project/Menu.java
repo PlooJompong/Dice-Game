@@ -2,17 +2,23 @@ package Project;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Menu {
     
-    //Scanner
+    // Scanner
     Scanner scanner = new Scanner(System.in);
     
-    //ArraysList
+    // ArraysLists
     ArrayList<String> players = new ArrayList<String>();
+    ArrayList<Integer> scores = new ArrayList<Integer>();
+    ArrayList<Integer> winners = new ArrayList<Integer>();
+    
+    FirstDice firstDice = new FirstDice();
+    SecondDice secondDice = new SecondDice();
 
-    //Menu
+    // Menu
     public void menu() {
         System.out.println("\n ===== WELCOME TO THE GAME =====");
         int ch;
@@ -22,30 +28,53 @@ public class Menu {
             System.out.println("[3] Check Player");
             System.out.println("[4] Clear Player");
             System.out.println("[0] Exit \n");
-
+            
             ch = scanner.nextInt();
             switch (ch) {
-            case 1 -> start();
-            case 2 -> addPlayer();
-            case 3 -> checkPlayer();
-            case 4 -> clearPlayer();
-            case 0 -> end();
-            default -> System.out.println("Invalid input");
+                case 1 -> start();
+                case 2 -> addPlayer();
+                case 3 -> checkPlayer();
+                case 4 -> clearPlayer();
+                case 0 -> end();
+                default -> System.out.println("Invalid input");
             }
             
         } while (ch != 0);
         scanner.close();
     }
+    
+    // Start the game
+    private void start() {
+        
+        System.out.println("\n ===== LET'S PLAY ===== \n");
+        if (players.isEmpty()) {
+            System.out.println("Please Add Player");
+        } else {
+            Integer max = Collections.max(scores);
+            System.out.println(players);
+            System.out.println(scores);
+            
+            for (int i = 0; i < scores.size(); i++) {
+                if (scores.get(i) == max) {
+                    winners.add(i);
+                }
+            }
 
-    //Start the game
-    public void start() {
-        System.out.println("\n Let's Play");
+            for (int i = 0; i < winners.size(); i++) {
+                if (winners.size() > 1) {
+                    System.out.println(winners.hashCode() + " are equal with the score of: " + max);
+
+                } else {
+                    System.out.println(winners.get(i) + " won with the score of " + max);
+                }
+            }
+        }
     }
 
-    //Add player to ArrayList
-    public void addPlayer() {
+    // Add player to ArrayList
+    private void addPlayer() {
         System.out.println("\n ===== ADD PLAYER ===== \n");
-        System.out.println("How many players?");
+        System.out.println("How many players?\n");
         int playerAmount = scanner.nextInt();
 
         for (int i = 0; i < playerAmount; i++) {
@@ -53,14 +82,16 @@ public class Menu {
             System.out.println(player);
             String playerName = scanner.next();
             players.add(playerName);
+            int totalScore = firstDice.throwDice() + secondDice.throwDice();
+            scores.add(totalScore);
         }
     }
 
-    //Check player amount § name
-    public void checkPlayer() {
+    // Check players amount & name
+    private void checkPlayer() {
         System.out.println("\n ===== PLAYER'S NAME ===== \n");
-
-        if (players.size() == 0) {
+        
+        if (players.isEmpty()) {
             System.out.println("Players are missing");
         } else {
             for (int i = 0; i < players.size(); i++) {
@@ -69,21 +100,22 @@ public class Menu {
             }
         }
     }
-
-    //Remove all players
-    public void clearPlayer() {
+    
+    // Remove all players && scores
+    private void clearPlayer() {
         System.out.println("\n ===== CLEAR PLAYER ===== \n");
-
-        if (players.size() == 0) {
+        if (players.isEmpty()) {
             System.out.println("The list is empty");
         } else {
             System.out.println("Player's name har been deleted");
             players.clear();
+            scores.clear();
+            winners.clear();
         }
     }
-
-    //End the game
-    public void end() {
+    
+    // End the game
+    private void end() {
         System.out.println("\nEnded");
     }
 }
