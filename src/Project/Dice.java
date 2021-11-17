@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Dice implements DiceInterface {
     
-    int sizeAmount;
+    private int sizeAmount;
 
     public Dice(int sizeAmount) {
         this.sizeAmount = sizeAmount;

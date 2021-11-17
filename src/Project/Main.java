@@ -15,6 +15,6 @@ public class Main {
  * // two POJO;
  * // one Interface or Abstract Class;
  * // Win/Lose condition;
- * UML;
- * //Documentation
+ * // UML;
+ * // Documentation
  */
