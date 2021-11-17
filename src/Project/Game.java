@@ -18,8 +18,8 @@ public class Game {
     ArrayList<Integer> maxScore = new ArrayList<Integer>();
     
     // Instansiera 2 Dice
-    Dice dice = new Dice(50);
-    Dice dice2 = new Dice(50);
+    Dice dice = new Dice(6);
+    Dice dice2 = new Dice(6);
 
     // Menu
     public void menu() {
