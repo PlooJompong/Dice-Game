@@ -18,8 +18,8 @@ public class Game {
     ArrayList<Integer> maxScore = new ArrayList<Integer>();
     
     // Instansiera 2 Dice
-    Dice dice = new Dice(6);
-    Dice dice2 = new Dice(6);
+    Die die = new Die(6);
+    Die die2 = new Die(6);
 
     // Menu
     public void menu() {
@@ -33,6 +33,7 @@ public class Game {
             System.out.println("[3] Check Player");
             System.out.println("[4] Clear Player");
             System.out.println("[0] Exit \n");
+            System.out.println("================");
             
             ch = scanner.nextInt();
             switch (ch) {
@@ -95,14 +96,14 @@ public class Game {
             String player = MessageFormat.format("Enter player {0} name", i + 1);
             System.out.println(player);
             String playerName = scanner.next();
-            int tempDice = dice.throwDice(); 
-            int tempDice2 = dice2.throwDice();
+            int tempDie = die.throwDie(); 
+            int tempDie2 = die2.throwDie();
             System.out.println("\n======================");
             System.out.println(playerName);
-            System.out.println("Dice 1: " + tempDice); 
-            System.out.println("Dice 2: " + tempDice2); 
+            System.out.println("Dice 1: " + tempDie); 
+            System.out.println("Dice 2: " + tempDie2); 
             System.out.println("======================");
-            int totalScore = tempDice + tempDice2;
+            int totalScore = tempDie + tempDie2;
             playerList.add(new Player(playerName, totalScore));
         }
     }

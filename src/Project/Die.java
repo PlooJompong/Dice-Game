@@ -2,11 +2,11 @@ package Project;
 
 import java.util.Random;
 
-public class Dice implements DiceInterface {
+public class Die implements DieInterface {
     
     private int sideAmount;
 
-    public Dice(int sideAmount) {
+    public Die(int sideAmount) {
         this.sideAmount = sideAmount;
     }
 
@@ -19,7 +19,7 @@ public class Dice implements DiceInterface {
     }
 
     @Override
-    public int throwDice() {
+    public int throwDie() {
         Random random = new Random();
         int firstDice = random.nextInt(sideAmount) + 1;
         return firstDice;
