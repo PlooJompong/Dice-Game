@@ -4,25 +4,24 @@ import java.util.Random;
 
 public class Dice implements DiceInterface {
     
-    private int sizeAmount;
+    private int sideAmount;
 
-    public Dice(int sizeAmount) {
-        this.sizeAmount = sizeAmount;
+    public Dice(int sideAmount) {
+        this.sideAmount = sideAmount;
     }
 
     public int getSizeAmount() {
-        return sizeAmount;
+        return sideAmount;
     }
 
-    public void setSizeAmount(int sizeAmount) {
-        this.sizeAmount = sizeAmount;
+    public void setSizeAmount(int sideAmount) {
+        this.sideAmount = sideAmount;
     }
 
     @Override
     public int throwDice() {
         Random random = new Random();
-        int firstDice = random.nextInt(sizeAmount) + 1;
+        int firstDice = random.nextInt(sideAmount) + 1;
         return firstDice;
     }
 }
-

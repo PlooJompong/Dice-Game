@@ -133,6 +133,6 @@ public class Game {
     
     // End the game
     private void end() {
-        System.out.println("\nEnded");
+        System.out.println("\nEnd");
     }
 }
