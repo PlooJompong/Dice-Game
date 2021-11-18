@@ -10,11 +10,11 @@ public class Die implements DieInterface {
         this.sideAmount = sideAmount;
     }
 
-    public int getSizeAmount() {
+    public int getSideAmount() {
         return sideAmount;
     }
 
-    public void setSizeAmount(int sideAmount) {
+    public void setSideAmount(int sideAmount) {
         this.sideAmount = sideAmount;
     }
 
