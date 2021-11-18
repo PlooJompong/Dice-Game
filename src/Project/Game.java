@@ -28,7 +28,7 @@ public class Game {
         do {
 
             System.out.println("\n===== MENU ===== \n");
-            System.out.println("[1] Check winner");
+            System.out.println("[1] Check Winner");
             System.out.println("[2] Add Player & Throw Dice");
             System.out.println("[3] Check Player");
             System.out.println("[4] Clear Player");
