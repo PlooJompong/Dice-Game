@@ -2,11 +2,11 @@ package Project;
 
 import java.util.Random;
 
-public class Die implements DieInterface {
+public class Dice implements DieInterface {
     
     private int sideAmount;
 
-    public Die(int sideAmount) {
+    public Dice(int sideAmount) {
         this.sideAmount = sideAmount;
     }
 

@@ -18,8 +18,8 @@ public class Game {
     ArrayList<Integer> maxScore = new ArrayList<Integer>();
     
     // Instansiera 2 Dice
-    Die die = new Die(6);
-    Die die2 = new Die(6);
+    Dice die = new Dice(6);
+    Dice die2 = new Dice(6);
 
     // Menu
     public void menu() {
@@ -77,8 +77,6 @@ public class Game {
                     maxScore.add(tempPlayer.getScore());
                 } 
             }
-            System.out.println(players);
-            System.out.println(scores);
             // Printa ut vinnare/vinnarna
             for (int i = 0; i < winningPlayer.size(); i++) {
                 System.out.println("The winner is: " + winningPlayer.get(i) + " with a score of " + maxScore.get(i));
@@ -100,8 +98,8 @@ public class Game {
             int tempDie2 = die2.throwDie();
             System.out.println("\n======================");
             System.out.println(playerName);
-            System.out.println("Dice 1: " + tempDie); 
-            System.out.println("Dice 2: " + tempDie2); 
+            System.out.println("Dice #1: " + tempDie); 
+            System.out.println("Dice #2: " + tempDie2); 
             System.out.println("======================");
             int totalScore = tempDie + tempDie2;
             playerList.add(new Player(playerName, totalScore));
